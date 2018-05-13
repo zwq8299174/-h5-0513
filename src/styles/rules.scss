@@ -1,0 +1,12 @@
+@import "./variable";
+
+.take-picture-wrapper{@extend .fixed-full;display: flex;justify-content: center;align-items: center;
+    .main-wrapper{display: inline-block;text-align: center;
+        .main-btn{width: 340px;height:340px;border-radius:10px;border: 2px dashed #686868;
+            display: flex;justify-content: center;align-items: center;font-size:150px;color:#9a9a9a;
+        
+        }
+        span{line-height: 160px;color:#060606;font-size: 30px;}
+    }
+    
+}

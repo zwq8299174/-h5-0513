@@ -10,7 +10,7 @@
 	</div>
 </template>
 <script>
-	import moment from 'moment';
+	import day from 'dayjs';
 	
 	export default {
 		name:'countDown',
@@ -63,7 +63,7 @@
 			// 活动结束时间
 			endTime: {
 				type: Number,
-				default: Date.parse(moment().add(1, 'days').format('YYYY-MM-DD'))
+				default: Date.parse(day().add(1, 'days').format('YYYY-MM-DD'))
 			},
 			// 倒计时结束显示文本
 			endText: {
