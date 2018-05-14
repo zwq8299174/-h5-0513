@@ -10,17 +10,14 @@ export default {
 		}
 	},
 	methods: {
-		request(config){
+		$request(config){
 			const AJAX = new Promise((resolve, reject) => {
 				axios(config).then((d) => {
-					if (d.status == 200 && d.data.code=='1') {
-						resolve(d.data.data);
+					if (d.status == 200) {
+						resolve(d.data);
 					} else {
-						if(d.data.code==-1){
-							alert(d.data.msg)
-						}else{
-							reject(d);
-						}
+						alert(d.data.msg)
+						reject(d);
 					};
 				}).catch((e) => {
 					reject(e);
@@ -28,13 +25,16 @@ export default {
 			});
 			return AJAX;
 		},
-		post(path, data,opts) {
+		$post(path, data,opts) {
+			let defaultData = {
+				openid:this.$store.state.app.openId
+			};
 			let CancelToken = axios.CancelToken;
 			let source = CancelToken.source();
 			let defaults = {
-				data: data,
+				data: Object.assign(defaultData,data?data:{}),
 				headers: {
-					'Content-Type': 'application/json; charset=UTF-8'
+					'Content-Type': 'application/json; charset=utf-8'
 				},
 				baseURL: this.$store.state.app.baseUrl,
 				method: 'post',
@@ -43,12 +43,14 @@ export default {
 				cancelToken: source.token
 			};
 			let options = Object.assign(defaults,opts?opts:{});
-			return this.request(options);
+			return this.$request(options);
 		},
-		get(path, params) {
-			console.log(this.$store.state.app.imgBaseUrl);
+		$get(path, params) {
+			let defaultData = {
+				openid:this.$store.state.app.openId
+			};
 			let options = {
-				params: params,
+				params: Object.assign(defaultData,params?params:{}),
 				headers: {
 					'X-Requested-With': 'XMLHttpRequest'
 				},
@@ -57,7 +59,7 @@ export default {
 				url: path,
 				timeout: 15 * 60 * 1000
 			};
-			return this.request(options);
+			return this.$request(options);
 		}
 	}
 

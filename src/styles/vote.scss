@@ -1,6 +1,7 @@
 @import "./variable";
 .vote-page {min-height: 100vh;
     background-color: $bg-gray;
+    .countdown-wrapper{min-height: 170px;}
     .player-list {
         width: 100%;
         display: flex;

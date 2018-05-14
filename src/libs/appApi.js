@@ -7,38 +7,29 @@ export default {
 		}
 	},
 	methods: {
-		API_getImgs(data,suc){
-			this.get('getImgs.php', data).then((d) => {
-				suc(d);
-			});
+		API_checkAttend(){
+			return this.$post('/campaign/checkAttend')
 		},
-		API_getPackage(data,suc){
-			this.get('getPackage.php', data).then((d) => {
-				suc(d);
-			});
+		API_ossSign(){
+			return this.$post('/campaign/ossSign')
 		},
-		API_getNumbers(suc){
-			this.get('getNumbers.php').then((d) => {
-				suc(d);
-			});
+		API_listVote(){
+			return this.$post('/campaign/listVote')
 		},
-		API_getCodes(suc){
-			this.get('getCodes.php').then((d) => {
-				suc(d);
-			});
+		API_vote(id){
+			return this.$post('/campaign/vote',{
+				voteid:id
+			})
 		},
-		API_getPageList(data,suc){
-			this.get('getPageList.php',data).then((d) => {
-				suc(d);
-			});
+		API_attend(){
+			return this.$post('/campaign/attend',{
+				nickname:this.$store.state.app.nickname,
+				url:this.$store.state.app.imgUrl,
+			})
 		},
-		API_getActicle(id,suc){
-			this.get('getActicle.php',{
-				id:id
-			}).then((d) => {
-				suc(d);
-			});
-		}
+		API_time(){
+			return this.$post('/campaign/time')
+		},
 	}
 
 }

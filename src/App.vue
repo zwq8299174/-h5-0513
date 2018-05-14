@@ -1,12 +1,16 @@
 <template>
-  <div id="app">
-    <router-view/>
-  </div>
+	<div id="app">
+		<router-view/>
+		<loader v-if="$store.state.app.loading" :loading="$store.state.app.loading"></loader>
+	</div>
 </template>
 
 <script>
-export default {
-  name: 'App'
-}
+	import loader from '@/components/loader';
+	export default {
+		name: 'App',
+		components: {
+			loader
+		}
+	}
 </script>
-

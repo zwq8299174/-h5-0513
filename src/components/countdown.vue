@@ -13,7 +13,7 @@
 	import day from 'dayjs';
 	
 	export default {
-		name:'countDown',
+		name:'CountDown',
 		data() {
 			return {
 				tipShow: true,

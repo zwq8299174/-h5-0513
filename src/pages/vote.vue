@@ -1,33 +1,18 @@
 <template>
 	<div class="vote-page">
-		<div class="countdown-wrapper">
-			
-		</div>
+		<countdown ></countdown>
 		<div class="player-list">
-			<div class="player-item">
-				<div class="img-wapper fn-clear">
-					<img class="fn-left" src="@/assets/img/player.jpg"/>
+			<div class="player-item" v-for="item in listVote" :key="item.key">
+				<div class="img-wrapper fn-clear">
+					<img class="fn-left" :src="item.url"/>
 				</div>
 				<div class="player-info">
 					<p class="name">
-						<span>某某某</span>
+						<span>{{item.nickname}}</span>
 					</p>
-					<p class="number">编号:&nbsp;&nbsp;001</p>
-					<span class="poll">票数:&nbsp;&nbsp;<i>13892</i></span>
-					<a class="btn-vote">投票</a>
-				</div>
-			</div>
-			<div class="player-item">
-				<div class="img-wrapper">
-					<img src="@/assets/img/player.jpg"/>
-				</div>
-				<div class="player-info">
-					<p class="name">
-						<span>某某某</span>
-					</p>
-					<p class="number">编号:&nbsp;&nbsp;001</p>
-					<span class="poll">票数:&nbsp;&nbsp;<i>13892</i></span>
-					<a class="btn-vote">投票</a>
+					<p class="number">编号:&nbsp;&nbsp;{{item.user_id}}</p>
+					<span class="poll">票数:&nbsp;&nbsp;<i>{{item.vote}}</i></span>
+					<a class="btn-vote" @click="vote(item.id)">投票</a>
 				</div>
 			</div>
 		</div>
@@ -35,11 +20,36 @@
 </template>
 
 <script>
+	import CountDown from '@/components/countdown';
 	export default {
 		name:'VotePage',
+		components:{
+			CountDown
+		},
 		data() {
 			return {
-				
+				listVote:[]
+			}
+		},
+		created(){
+			this.getListData();
+		},
+		methods:{
+			getListData(){
+				this.API_listVote().then((d)=>{
+					console.log(d);
+					this.listVote = d.result;
+				});
+			},
+			vote(id){
+				this.API_vote(id).then((d)=>{
+					console.log(d);
+					if(d.code==200){
+						alert('投票成功');
+					}else{
+						alert(d.msg);
+					}
+				});
 			}
 		}
 	}
