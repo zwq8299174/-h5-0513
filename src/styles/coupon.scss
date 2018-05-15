@@ -1,7 +1,7 @@
 @import "./variable";
 
 .coupon-page{padding:30px;
-    .coupon-item{background-color: #ef5457;color:#fff;text-align: center;padding:25px 0;position: relative;
+    .coupon-item{background-color: #ef5457;color:#fff;text-align: center;padding:25px 0;position: relative;margin-bottom: 34px;
         h2{line-height: 60px;font-size:32px;}
         .main-content{display: flex;justify-content: center;height: 120px;align-items:flex-end;margin-top: 10px;
             .symbol{align-self: flex-start;width: 126px;text-align: center;font-size:36px;}
@@ -23,10 +23,10 @@
             i{display: inline-block;width: 30px;height:30px;font-size:30px;line-height: 30px;color:#fff;}
         }
         .left-gap{
-            left:0;
+            left:-1px;
         }
         .right-gap{
-            right:0;
+            right:-2px;
         }
     }
 

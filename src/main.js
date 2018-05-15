@@ -7,11 +7,15 @@ import appApi from './libs/appApi';
 import filter from './libs/filter';
 import oss from './libs/oss';
 
+import clipper from '../static/clipper'
+
 import './styles/app.scss'
 
 
 	
 Vue.config.productionTip = false
+
+Vue.use(clipper);
 
 Vue.mixin(ajax);
 Vue.mixin(appApi);

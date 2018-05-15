@@ -5,11 +5,13 @@ import {appRouter} from '@/router/router';
 
 const app = {
     state: {
-        baseUrl:'http://47.98.145.11:8360',
+        baseUrl:'https://www.leinhome.com',
         imgBaseUrl:'http://47.98.145.11',
 		appRouter:appRouter[0],
 		loading:false,
-		openId:'2',
+		showText:false,
+		progress:'0%',
+		openId:'199',
 		nickname:'test',
 		imgUrl:'http://s1.dwstatic.com/group1/M00/5C/6D/4c4153c46f57b3103f38ece07d1c1ab6.gif'
     },

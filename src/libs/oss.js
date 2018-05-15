@@ -40,17 +40,22 @@ export default {
 						silverlight_xap_url: '../assets/other/Moxie.xap',
 						url: 'http://oss.aliyuncs.com',
 						filters: this.set_upload_filter(fileType),
+						multi_selection:false,
 						init: {
 							PostInit: () => {
-								container.querySelector('input').addEventListener('change',()=>{
+								container.querySelector('input').addEventListener('change',(e)=>{
 									this.set_upload_param(uploader, '', false, ossItem);
 								},false);
 							},
 							BeforeUpload: (up, file) => {
+//								this.clip(file,{
+//						          resultObj : item.mainImg,
+//						          aspectRatio : 1
+//						        });
+//						        up.stop();
 								this.set_upload_param(up, file.name, true, ossItem);
 								beforeUpload();
 							},
-
 							UploadProgress: (up, file) => { //上传中，显示进度条
 								if(uploading) {
 									var percent = file.percent;
@@ -77,61 +82,13 @@ export default {
 									alert('\n这个文件已经上传过一遍了！');
 								} else {
 									console.log('\nError xml:' + err.response);
-								}
-								item.error_fn();
+								};
+								item.error_fn(err);
 							}
 						}
 					});
 					uploader.init();
 				});
-			}
-		},
-		ajax(params) {
-			var defaults = {
-				url: params.url,
-				type: params.type ? params.type : 'post',
-				contentType: false,
-				processData: false,
-				'Content-Type': 'multipart/form-data'
-			};
-	
-			for(var key in defaults) {
-				params[key] = defaults[key];
-			}
-			var _successFn = params.success;
-			params.success = function(result, status, xhr) {
-				if(false) {
-	
-				}
-				_successFn(result, status, xhr)
-			}
-			if(typeof params.error !== 'function') {
-				params.error = function(err) {
-					console.log(err);
-				}
-			}
-	
-			$.ajax(params);
-		},
-		send_request() {
-			let xmlhttp = null;
-			if(window.XMLHttpRequest) {
-				xmlhttp = new XMLHttpRequest();
-			} else if(window.ActiveXObject) {
-				xmlhttp = new ActiveXObject('Microsoft.XMLHTTP');
-			}
-			if(xmlhttp != null) {
-				let data = null;
-				oss.ajax({
-					url: this.apiUrl,
-					success: function(res) {
-						data = res.data;
-					},
-					async: false
-				});
-				return data;
-			} else {
-				alert('Your browser does not support XMLHTTP.');
 			}
 		},
 		get_signature() {

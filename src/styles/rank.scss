@@ -9,7 +9,8 @@
             img{width: 100%;}
         }
         .player-info{text-align: center;margin-top: 28px;
-            .center{line-height: 90px;
+            .center{line-height: 90px;height: 90px;
+                .svg-icon{width:80px;height:80px;top:20px;position: relative;}
                 display: inline-block;color:#333;
                 .name{font-size:48px;}
                 .number{font-size:26px;margin-left: 10px;}

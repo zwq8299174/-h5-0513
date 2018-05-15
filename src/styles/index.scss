@@ -4,12 +4,11 @@
 
 .index-page{@extend .fixed-full;display: flex;justify-content: center;
     background-image: url('../assets/img/index-bg.jpg');background-size: 100% 100%;
-    .go-rules{font-size:36px;color:#000;bottom:30vh;position: absolute;left:8vw;}
+    .go-rules{font-size:36px;color:#fff;top:32vh;position: absolute;right:8vw;}
     .btn-wrapper{
-       display: inline-block;position: absolute;bottom:6vh;
-       a{display: inline-block;width: 275px;height: 86px;line-height: 86px;text-align: center;font-size:36px;color:#000;border-radius: 10px;box-shadow: 0 5px 15px rgba(0,0,0,0.2);}
-       .btn-vote{background-image: linear-gradient(90deg, #fff, #e7e7e7);}
-       .btn-join{background-color: $color-primary;margin-left: 55px;}
+       display: inline-block;position: absolute;bottom:4vh;
+       a{display: inline-block;width: 275px;height: 86px;line-height: 86px;text-align: center;font-size:36px;color:#000;border-radius: 10px;box-shadow: 0 5px 15px rgba(0,0,0,0.2);background-image: linear-gradient(180deg, #fff, #d2d2d2);}
+       .btn-join{margin-left: 55px;}
     }
 }
 

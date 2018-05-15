@@ -8,27 +8,27 @@ export default {
 	},
 	methods: {
 		API_checkAttend(){
-			return this.$post('/campaign/checkAttend')
+			return this.$post('/onsite/campaign/checkAttend')
 		},
 		API_ossSign(){
-			return this.$post('/campaign/ossSign')
+			return this.$post('/onsite/campaign/ossSign')
 		},
 		API_listVote(){
-			return this.$post('/campaign/listVote')
+			return this.$post('/onsite/campaign/listVote')
 		},
 		API_vote(id){
-			return this.$post('/campaign/vote',{
+			return this.$post('/onsite/campaign/vote',{
 				voteid:id
 			})
 		},
 		API_attend(){
-			return this.$post('/campaign/attend',{
+			return this.$post('/onsite/campaign/attend',{
 				nickname:this.$store.state.app.nickname,
 				url:this.$store.state.app.imgUrl,
 			})
 		},
 		API_time(){
-			return this.$post('/campaign/time')
+			return this.$post('/onsite/campaign/time')
 		},
 	}
 

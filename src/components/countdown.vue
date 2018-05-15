@@ -1,12 +1,11 @@
 <template>	
 	<div class="countdown-wrapper">
-		<!--<span v-if="tipShow">{{tipText}}:</span>-->
-		<!--<span v-if="!tipShow">{{tipTextEnd}}:</span>-->
+		<div class="countdown-text" v-if="tipShow">{{tipText}}</div>
+		<div class="countdown-text" v-if="!tipShow">{{countdownText}}</div>
 		<div class="item"><div class="num-wrapper">{{msTime.day}}</div><i>{{dayTxt}}</i></div>
 		<div class="item"><div class="num-wrapper">{{msTime.hour}}</div><i>{{hourTxt}}</i></div>
 		<div class="item"><div class="num-wrapper">{{msTime.minutes}}</div><i>{{minutesTxt}}</i></div>
 		<div class="item"><div class="num-wrapper">{{msTime.seconds}}</div><i>{{secondsTxt}}</i></div>
-		<!--<p v-if="!msTime.show">{{endText}}</p>-->
 	</div>
 </template>
 <script>
@@ -35,15 +34,19 @@
 			}
 		},
 		props: {
+			countdownText:{
+				type: String,
+				default: '投票倒计时:'
+			},
 			//距离开始提示文字
 			tipText: {
 				type: String,
-				default: '距离开始'
+				default: '距离开始:'
 			},
 			//距离结束提示文字
 			tipTextEnd: {
 				type: String,
-				default: '距离结束'
+				default: '距离结束:'
 			},
 			//时间控件ID
 			id: {
@@ -53,17 +56,17 @@
 			//当前时间
 			currentTime: {
 				type: Number,
-				default: (new Date()).getTime()
+				default: new Date().getTime()
 			},
 			// 活动开始时间
 			startTime: {
 				type: Number,
-				default: (new Date()).getTime()
+				default: new Date().getTime()
 			},
 			// 活动结束时间
 			endTime: {
 				type: Number,
-				default: Date.parse(day().add(1, 'days').format('YYYY-MM-DD'))
+				default: new Date().getTime()
 			},
 			// 倒计时结束显示文本
 			endText: {
@@ -117,6 +120,7 @@
 					this.msTime.show = false;
 					this.end_message();
 				} else if(this.current < this.star) {
+					console.log('qwe')
 					/**
 					 * 当前时间小于开始时间 活动尚未开始
 					 */
@@ -192,3 +196,6 @@
 		}
 	}
 </script>
+<style lang="scss" scoped>
+	@import "../styles/count-down";
+</style>
