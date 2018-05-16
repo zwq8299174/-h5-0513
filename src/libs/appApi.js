@@ -21,8 +21,9 @@ export default {
 				voteid:id
 			})
 		},
-		API_attend(){
+		API_attend(data){
 			return this.$post('/onsite/campaign/attend',{
+				...data,
 				nickname:this.$store.state.app.nickname,
 				url:this.$store.state.app.imgUrl,
 			})
@@ -30,6 +31,17 @@ export default {
 		API_time(){
 			return this.$post('/onsite/campaign/time')
 		},
+		API_getCode(mobile){
+			return this.$post('/onsite/user/sendCaptcha',{
+				mobile:mobile
+			})
+		},
+		API_getWxUserInfo(){
+			return this.$post('/onsite/user/getWxUserInfo',{
+				code:this.$store.state.app.code
+			})
+		},
+		
 	}
 
 }

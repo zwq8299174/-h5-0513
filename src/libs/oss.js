@@ -13,6 +13,7 @@ export default {
 			policyBase64: '',
 			accessid: '',
 			signature: '',
+			dir:'',
 			expire: 0,
 			g_object_name: '',
 			g_object_name_type: 'random_name', // 可选类型为 local_name 或 random_name
@@ -20,6 +21,13 @@ export default {
 	},
 	methods: {
 		$oss(objArr) {
+			this.API_ossSign().then((d)=>{
+				this.policyBase64 = d.result.policy;
+				this.accessId = d.result.accessId;
+				this.signature = d.result.signature;
+				this.dir = d.result.dir;
+				this.host = d.result.host;
+			});
 			if(objArr.length) {
 				objArr.forEach((item) => {
 					let container = item.container,
@@ -30,7 +38,7 @@ export default {
 						success = item.success_fn,
 						ossItem = {
 							key:item.prefix ? item.prefix : '',
-							dir:item.dir ? item.dir + '/' : ''
+							dir:this.dir ? item.dir + '/' : ''
 						};
 					const uploader = new plupload.Uploader({
 						runtimes: 'html5,flash,silverlight,html4',
@@ -40,7 +48,7 @@ export default {
 						silverlight_xap_url: '../../static/other/Moxie.xap',
 						url: 'https://oss-cn-hangzhou.aliyuncs.com',
 						filters: this.set_upload_filter(fileType),
-						chunk_size:'2mb',
+//						chunk_size:'2mb',
 						multi_selection:false,
 						init: {
 							PostInit: () => {
@@ -66,14 +74,14 @@ export default {
 							FileUploaded: (up, file, info)=> {
 								console.log(info);
 								console.log(file);
-								// if(info.status == 200) {
-								// 	let data = {};
-								// 	data.fileName = file.name;
-								// 	data.fileUrl = this.host + '/' + ossItem.dir + this.get_uploaded_object_name(file.name)
-								// 	success(data);
-								// } else {
-								// 	console.log(info.response);
-								// }
+								 if(info.status == 200) {
+								 	let data = {};
+								 	data.fileName = file.name;
+								 	data.fileUrl = this.host + '/' + this.dir + '/'+ this.get_uploaded_object_name(file.name)
+								 	success(data);
+								 } else {
+								 	console.log(info.response);
+								 }
 							},
 							Error: (up, err) => {
 								if(err.code == -600) {
@@ -147,32 +155,23 @@ export default {
 		},
 		set_upload_param(up, filename, ret, ossItem) {
 			if(ret == false) {
-				this.get_signature().then((d)=>{
-					this.policyBase64 = d.result.policy;
-					this.accessId = d.result.accessId;
-					this.signature = d.result.signature;
-					this.dir = d.result.dir;
-					this.host = d.result.host;
-					console.log(this.g_object_name);
-					let new_multipart_params = {
-						'policy': this.policyBase64,
-						'OSSAccessKeyId': this.accessId,
-						'success_action_status': '200', //让服务端返回200,不然，默认会返回204
-						'signature': this.signature,
-					};
-					up.setOption({
-						'url': this.host,
-						'multipart_params': new_multipart_params
-					});
-					up.start();
+				let new_multipart_params = {
+					'policy': this.policyBase64,
+					'OSSAccessKeyId': this.accessId,
+					'success_action_status': '200', //让服务端返回200,不然，默认会返回204
+					'signature': this.signature,
+				};
+				up.setOption({
+					'url': this.host,
+					'multipart_params': new_multipart_params
 				});
+				up.start();
 			}else{
 				if(filename != '') {
 					this.calculate_object_name(filename, ossItem);
 				};
-				console.log(this.g_object_name);
 				let new_multipart_params = {
-					'key': ossItem.dir+this.g_object_name,
+					'key': this.dir+'/'+this.g_object_name,
 					'policy': this.policyBase64,
 					'OSSAccessKeyId': this.accessId,
 					'success_action_status': '200', //让服务端返回200,不然，默认会返回204

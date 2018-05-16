@@ -30,7 +30,6 @@
 					container : this.$refs.mainWrapper,
 					browserBtn : this.$refs.mainBtn,
 					mainImg:this.$refs.mainImg,
-					dir : 'campaign', // 上传到哪个目录下
 					prefix : 'player_', // 上传过后文件名的前缀,可以根据功能模块命名
 					fileType : 'picture', // 可以是picture或video, 支持的格式在upload.js中
 					beforeUpload_fn : ()=>{

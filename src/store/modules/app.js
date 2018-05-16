@@ -8,6 +8,7 @@ const app = {
         baseUrl:'https://www.leinhome.com',
         imgBaseUrl:'http://47.98.145.11',
 		appRouter:appRouter[0],
+		code:'',
 		loading:false,
 		showText:false,
 		progress:'0%',

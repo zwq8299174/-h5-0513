@@ -16,7 +16,7 @@ export default {
 				<div class="message-container">
 					<div class="message-box">
 						<div class="title">
-							<img src="./static/message-title.png" alt="">
+							<img src="./static/img/message-title.png" alt="">
 						</div>
 						<div class="content">
 							${opt.content}
