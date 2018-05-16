@@ -38,8 +38,9 @@ export default {
 						container: container,
 						flash_swf_url: '../../static/other/Moxie.swf',
 						silverlight_xap_url: '../../static/other/Moxie.xap',
-						url: 'http://oss.aliyuncs.com',
+						url: 'https://oss-cn-hangzhou.aliyuncs.com',
 						filters: this.set_upload_filter(fileType),
+						chunk_size:'2mb',
 						multi_selection:false,
 						init: {
 							PostInit: () => {
@@ -62,16 +63,17 @@ export default {
 									uploading(percent);
 								}
 							},
-
 							FileUploaded: (up, file, info)=> {
-								if(info.status == 200) {
-									let data = {};
-									data.fileName = file.name;
-									data.fileUrl = this.host + '/' + ossItem.dir + this.get_uploaded_object_name(file.name)
-									success(data);
-								} else {
-									console.log(info.response);
-								}
+								console.log(info);
+								console.log(file);
+								// if(info.status == 200) {
+								// 	let data = {};
+								// 	data.fileName = file.name;
+								// 	data.fileUrl = this.host + '/' + ossItem.dir + this.get_uploaded_object_name(file.name)
+								// 	success(data);
+								// } else {
+								// 	console.log(info.response);
+								// }
 							},
 							Error: (up, err) => {
 								if(err.code == -600) {
@@ -190,7 +192,7 @@ export default {
 			};
 			let picture = {
 				title: 'Image files',
-				extensions: 'jpg,gif,png,bmp',
+				extensions: 'jpeg,jpg,gif,png,bmp',
 			};
 			let video = {
 				title: 'files',
