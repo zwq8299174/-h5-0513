@@ -13,7 +13,7 @@
 		name:'IndexPage',
 		data() {
 			return {
-				
+
 			}
 		},
 		methods:{
@@ -33,17 +33,17 @@
 					let currenttime = d.result.currenttime;
 					let starttime = d.result.starttime;
 					let endtime = d.result.endtime;
-					//if(currenttime>starttime && currenttime<endtime){
+					if(currenttime>starttime && currenttime<endtime){
 						this.$router.push({
 							name:'vote'
 						});
-//					}else if(currenttime<starttime){
-//						alert('来早了,活动还未开始o(╥﹏╥)o');
-//					}else{
-//						this.$router.push({
-//							name:'rank'
-//						});
-//					}
+					}else if(currenttime<starttime){
+						alert('来早了,活动还未开始o(╥﹏╥)o');
+					}else{
+						this.$router.push({
+							name:'rank'
+						});
+					}
 				});
 			},
 			checkAttend(){

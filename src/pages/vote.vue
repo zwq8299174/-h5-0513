@@ -61,7 +61,9 @@
 				this.API_vote(id).then((d)=>{
 					console.log(d);
 					if(d.code==200){
-						alert('投票成功');
+						this.$MessageShow({
+							content:'每人每天都可投票一次哦～'
+						});
 					}else{
 						alert(d.msg);
 					}
@@ -97,7 +99,7 @@
 				if(this.loadCount==this.listVote.length){
 					this.listVoteLoad = Utils.deepCopy(this.listVote);
 					this.$store.state.app.loading = false;
-					
+
 				}
 			}
 		}

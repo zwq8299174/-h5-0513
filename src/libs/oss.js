@@ -36,8 +36,8 @@ export default {
 						runtimes: 'html5,flash,silverlight,html4',
 						browse_button: browserBtn,
 						container: container,
-						flash_swf_url: '../assets/other/Moxie.swf',
-						silverlight_xap_url: '../assets/other/Moxie.xap',
+						flash_swf_url: '../../static/other/Moxie.swf',
+						silverlight_xap_url: '../../static/other/Moxie.xap',
 						url: 'http://oss.aliyuncs.com',
 						filters: this.set_upload_filter(fileType),
 						multi_selection:false,
@@ -186,7 +186,7 @@ export default {
 		set_upload_filter(fileType) {
 			let filters = {
 				mime_types: [],
-				prevent_duplicates: false   
+				prevent_duplicates: false
 			};
 			let picture = {
 				title: 'Image files',

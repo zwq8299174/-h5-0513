@@ -3,7 +3,7 @@
 
 
 .index-page{@extend .fixed-full;display: flex;justify-content: center;
-    background-image: url('../assets/img/index-bg.jpg');background-size: 100% 100%;
+    background-image: url('../../static/img/index-bg.jpg');background-size: 100% 100%;
     .go-rules{font-size:36px;color:#fff;top:32vh;position: absolute;right:8vw;}
     .btn-wrapper{
        display: inline-block;position: absolute;bottom:4vh;
@@ -11,4 +11,3 @@
        .btn-join{margin-left: 55px;}
     }
 }
-

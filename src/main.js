@@ -6,16 +6,19 @@ import ajax from './libs/ajax';
 import appApi from './libs/appApi';
 import filter from './libs/filter';
 import oss from './libs/oss';
+import Message from './components/message/index';
+
 
 import clipper from '../static/clipper'
 
 import './styles/app.scss'
 
 
-	
+
 Vue.config.productionTip = false
 
 Vue.use(clipper);
+Vue.use(Message);
 
 Vue.mixin(ajax);
 Vue.mixin(appApi);
