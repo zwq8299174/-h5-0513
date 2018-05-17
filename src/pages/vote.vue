@@ -33,15 +33,15 @@
 				listVote:[],
 				listVoteLoad:[],
 				imgWidth:null,
-				currenttime:new Date().getTime(),
-				starttime:new Date().getTime(),
-				endtime:new Date().getTime()+80000
+				currenttime:0,
+				starttime:0,
+				endtime:0
 			}
 		},
 		created(){
 			this.getListData();
 			//获取线上真实时间,测试期间可以不获取
-//			this.getTime();
+			this.getTime();
 			this.$store.state.app.showText = false;
 //			this.$store.state.app.loading = true;
 		},
