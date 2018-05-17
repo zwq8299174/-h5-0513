@@ -1,9 +1,13 @@
 @import "./variable";
 
 
-.preview-page{@extend .fixed-full;background-color: #c2c2c2;}
-.img-wrapper{width: 100%;height: calc(100% - 360px);
-    img{width: 100%;overflow: hidden;}
+.preview-page{@extend .fixed-full;
+
+//background-color: #c2c2c2;
+
+}
+.img-wrapper{width: 100%;height: calc(100% - 617px);overflow: hidden;text-align: center;
+    img{}
 }
 .bottom-container{position: absolute;bottom: 0;width: 100%;background-color: #fff;
     .form-wrapper{width: 100%;

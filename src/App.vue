@@ -19,9 +19,8 @@
 			if(Utils.getUrlVars().code){
 				this.$store.state.app.code = Utils.getUrlVars().code;
 				this.API_getWxUserInfo().then((d)=>{
-					console.log(d);
+					console.log(d.result.openid);
 					this.$store.state.app.openid = d.result.openid;
-					this.$store.state.app.nickname = d.result.nickname;
 				});
 			}
 		}

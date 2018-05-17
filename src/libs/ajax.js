@@ -27,7 +27,7 @@ export default {
 		},
 		$post(path, data,opts) {
 			let defaultData = {
-				openid:this.$store.state.app.openId
+				openid:this.$store.state.app.openid
 			};
 			let CancelToken = axios.CancelToken;
 			let source = CancelToken.source();
@@ -47,7 +47,7 @@ export default {
 		},
 		$get(path, params) {
 			let defaultData = {
-				openid:this.$store.state.app.openId
+				openid:this.$store.state.app.openid
 			};
 			let options = {
 				params: Object.assign(defaultData,params?params:{}),

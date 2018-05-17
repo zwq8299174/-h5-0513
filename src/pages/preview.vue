@@ -1,7 +1,7 @@
 <template>
 	<div class="preview-page">
 		<div class="img-wrapper" ref="imgWrapper">
-			<img :src="$store.state.app.imgUrl" ref="mainImg" :style="imgStyle"/>
+			<img :class="{'fn-hide':imgStyle==null}" :src="$store.state.app.imgUrl" ref="mainImg" :style="imgStyle"/>
 		</div>
 		<div class="bottom-container">
 			<div class="form-wrapper">
@@ -35,7 +35,7 @@
 		name:'PreviewPage',
 		data() {
 			return {
-				imgStyle:{},
+				imgStyle:null,
 				seconds:59,
 				secondsText:'获取',
 				clock:null,
@@ -69,12 +69,21 @@
 				let oImg = new Image();
         			oImg.src = this.$refs.mainImg.src;
         			oImg.onload = (e) => {
-        				imgHeight = Math.round(750/oImg.width*oImg.height);
-        				imgTop = Math.round((wrapperHeight - imgHeight)/2);
-        				this.imgStyle = {
-        					height:imgHeight+'px',
-        					'margin-top':imgTop+'px'
+        				if(oImg.width>oImg.height){
+        					this.imgStyle = {
+		      					width:'100%'
+		      				};
+        				}else{
+        					this.imgStyle = {
+		      					height:'100%'
+		      				};
         				};
+//      				imgHeight = Math.round(750/oImg.width*oImg.height);
+//      				imgTop = Math.round((wrapperHeight - imgHeight)/2);
+//      				this.imgStyle = {
+//      					height:imgHeight+'px',
+//      					'margin-top':imgTop+'px'
+//      				};
         			};
 			},
 			getCode(){
