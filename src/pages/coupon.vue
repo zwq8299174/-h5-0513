@@ -47,6 +47,9 @@
 				<i class="icon">&#xe619;</i>
 			</div>
 		</div>
+		<div class="vote-btn-wrapper">
+			<a class="vote-btn" @click="goVote">投票</a>
+		</div>
 	</div>
 </template>
 
@@ -82,6 +85,13 @@
 						fontSize:'70px'
 					}
 				]
+			}
+		},
+		methods:{
+			goVote(){
+				this.$router.push({
+					name:'vote'
+				});
 			}
 		}
 	}

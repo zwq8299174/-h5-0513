@@ -24,7 +24,6 @@ export default {
 		API_attend(data){
 			return this.$post('/onsite/campaign/attend',{
 				...data,
-				nickname:this.$store.state.app.nickname,
 				url:this.$store.state.app.imgUrl,
 			})
 		},

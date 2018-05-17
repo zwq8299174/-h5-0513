@@ -56,10 +56,12 @@
 				this.API_listVote().then((d)=>{
 					this.rankTop3 = d.result.slice(0,3);
 					this.listRank = d.result.slice(3);
-					this.$nextTick(()=>{
-						this.topImgWidth = this.$el.querySelector('.top-img-wapper').offsetWidth;
-						this.bottomImgWidth = this.$el.querySelector('.bottom-img-wapper').offsetWidth;
-					})
+					if(d.result.length>0){
+						this.$nextTick(()=>{
+							this.topImgWidth = this.$el.querySelector('.top-img-wapper').offsetWidth;
+							this.bottomImgWidth = this.$el.querySelector('.bottom-img-wapper').offsetWidth;
+						})
+					}
 				});
 			},
 		}

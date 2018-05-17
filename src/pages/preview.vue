@@ -51,21 +51,15 @@
 		},
 		methods:{
 			attend(){
-				console.log(this.checkForm());
-				if(this.checkForm()){
+				let result = this.checkForm();
+				if(result){
 					this.API_attend(this.formData).then((d)=>{
-						console.log(d);
-						if(d.code==200){
-							this.$router.push({
-								name:'vote'
-							});
-						}else if(d.code==302){
-							this.$router.push({
-								name:'coupon'
-							});
-						}else{
+						if(d.code!=200){
 							alert(d.msg);
-						}
+						};
+						this.$router.push({
+							name:'coupon'
+						});
 					});
 				}
 			},

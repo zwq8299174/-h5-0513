@@ -32,7 +32,7 @@
 				loadCount:0,
 				listVote:[],
 				listVoteLoad:[],
-				imgWidth:0,
+				imgWidth:null,
 				currenttime:new Date().getTime(),
 				starttime:new Date().getTime(),
 				endtime:new Date().getTime()+80000
@@ -52,9 +52,11 @@
 					this.listVote = d.result;
 					this.listVoteLoad = d.result;
 //					this.preLoad();
-					this.$nextTick(()=>{
-						this.imgWidth = this.$el.querySelector('.img-wrapper').offsetWidth;
-					})
+					if(d.result.length>0&&this.imgWidth==null){
+						this.$nextTick(()=>{
+							this.imgWidth = this.$el.querySelector('.img-wrapper').offsetWidth;
+						})
+					}
 				});
 			},
 			vote(id){
@@ -64,6 +66,7 @@
 						this.$MessageShow({
 							content:'每人每天都可投票一次哦～'
 						});
+						this.getListData();
 					}else{
 						alert(d.msg);
 					}
