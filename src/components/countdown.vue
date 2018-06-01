@@ -1,4 +1,4 @@
-<template>	
+<template>
 	<div class="countdown-wrapper">
 		<div class="countdown-text" v-if="tipShow">{{tipText}}</div>
 		<div class="countdown-text" v-if="!tipShow">{{countdownText}}</div>
@@ -10,7 +10,7 @@
 </template>
 <script>
 	import day from 'dayjs';
-	
+
 	export default {
 		name:'CountDown',
 		data() {
@@ -136,7 +136,7 @@
 					this.msTime.show = true;
 					this.$emit('startCallback', this.msTime.show);
 					setTimeout(() => {
-						this.runTime(this.end, this.star, this.end_message, true)
+						this.runTime(this.end, this.current, this.end_message, true)
 					}, 1);
 				}
 			},
